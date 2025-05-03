@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = "Thanh Dinh's site"
 theme = "hugo-coder"
 
 # Menu links
@@ -34,3 +34,4 @@ style = "github-dark"
 
   colorScheme = "auto"
   hidecolorschemetoggle = false
+  dateFormat = "January 2, 2006"
