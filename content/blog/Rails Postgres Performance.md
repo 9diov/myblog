@@ -39,26 +39,31 @@ In our BI app, we organize the reports into a familiar hierarchy of folders, sim
 
 Our models look like this:
 
-    class Folder < ActiveRecord::Base
-      has_one :parent
-    end
-    
-    class Report < ActiveRecord::Base
-      has_one :parent, class: 'Folder'
-    end
+```ruby
+class Folder < ActiveRecord::Base
+  has_one :parent
+end
+
+class Report < ActiveRecord::Base
+  has_one :parent, class: 'Folder'
+end
+```
+
 
 As a results, the code to get, say, the code to get the ancestors of a report looks like this:
 
-    def ancestors(report)
-	  res = []
-      folder = report.parent # query sent to database
-      while folder.present?
-        res << folder
-        folder = folder.parent # another query sent to database
-      end
-	  res
+```ruby
+def ancestors(report)
+  res = []
+    folder = report.parent # query sent to database
+    while folder.present?
+      res << folder
+      folder = folder.parent # another query sent to database
     end
+  res
+end
 
+```
 As you can see, at each level of the hierarchy, a query is sent to the database to retrieve the parent folder of the current one. Together with permission checking at each hierarchy with a bunch of similar logic, our app is sending out hundreds of queries just to show the user when she browses through a folder.
 
 I first thought about caching the whole hierarchy in our cache (Redis) to avoid bombarding our database with such queries. However, the trade-off of such strategy is cache invalidation which is very error-prone and hard to maintain as new permission rule is added to the system.
