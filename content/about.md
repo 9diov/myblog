@@ -11,3 +11,5 @@ While working as a co-founder of Holistics, I learned business strategy and mana
 As an engineering manager, I worked on teaching our team members the basics of problem solving, technical writing, software design, coaching, and a few other skills.
 
 I have a broad interest in the topic of building software as tools for thoughts, the "bicycle of the mind".
+
+For personal improvement, I studied a bit of Buddhism, Taoism and Stoicism. These provide useful perspectives and practices for me to deal with the difficulties of life.

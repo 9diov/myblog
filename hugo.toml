@@ -1,7 +1,8 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = "Thanh Dinh's site"
+title = "Thanh Dinh"
 theme = "hugo-coder"
+#theme = "hugo-bearblog"
 
 # Menu links
 [[menu.main]]
@@ -35,3 +36,7 @@ style = "github-dark"
   colorScheme = "auto"
   hidecolorschemetoggle = false
   dateFormat = "January 2, 2006"
+
+[[module.mounts]]
+source = 'images'
+target = 'static/images'
