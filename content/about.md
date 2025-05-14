@@ -7,7 +7,7 @@ At work, I helped creating [AMQL](https://docs.holistics.io/as-code/amql/), a pa
 
 As a **co-founder at Holistics**, I naturally took on roles beyond engineering — from shaping product strategy to navigating the trade-offs of startup growth. I’ve learned to combine systems thinking with business strategy, helping build a company where engineering and vision reinforce each other.
 
-In my role as an **engineering manager**, I focus on the meta-skills of building great teams: **problem-solving, technical writing, software architecture, and coaching**. I’m especially interested in teaching juniors how to think clearly and design software that lasts.
+In my role as an **engineering manager**, I focus on the meta-skills of building great teams: **[problem-solving](/tags/problem-solving), technical writing, software architecture, and coaching**. I’m especially interested in teaching juniors how to think clearly and design software that lasts.
 
 I have a deep interest in building software as **tools for thought** — the kind of technology that augments reasoning and creativity, like Engelbart’s “bicycle for the mind.” I’m drawn to ideas that sit at the intersection of engineering, cognition, and design.
 
