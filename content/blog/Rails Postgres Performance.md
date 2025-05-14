@@ -3,6 +3,9 @@ title: How we reduced our Rails app's response time by 3x with PostgreSQL
 date: 2018-01-25T04:14:54+08:00
 draft: false
 type: 'posts'
+tags:
+  - performance
+  - postgres
 ---
 
 ## Background
@@ -16,8 +19,6 @@ In order to [have a smooth user interaction](https://www.nngroup.com/articles/po
 The first step in doing any kind of optimization is to find out the bottleneck. And you can only do that with visibility on the system's performance. In other words, you start by adding tracking. For each request, Rails logged the total response time, together with time spent in the controller, the view and ActiveRecord. You can build your own tracking logic by sending the logs to a central server, then parse the logs and store the result data somewhere with querying capabilities.
 
 If you are serious about your web application and you don't have any tracking, add one as soon as possible. The cost of a tracking service like NewRelic or in our case, ScoutApp is neglible compared to the insights that they provide. We use ScoutApp since it not only provides the summary metrics but also the ability to drill down on the sluggish endpoints, not to mention the valuable feature of  n + 1 issue detection (I will come to that later).
-
-[[ScoutApp screenshot here]]
 
 Note that for summary metrics, don't just focus on average response time, but look into 75th and 90th percentile to have a more accurate picture of your app's performance. This is important since some very long requests or a lot of short requests may skew your perception about the app's performance.
 
@@ -72,18 +73,20 @@ After some more research, I found out that with PostgreSQL, there is a way to qu
 
 With recursive CTE, I can now retrieve the whole hierarchy with a query like so:
 
-	with recursive tree as (
-	  select R.parent_id as id, array[R.parent_id]::integer[] as path
-	  from #{Folder.table_name} R
-	  where id = #{folder_id}
-	 
-	  union
-	 
-	  select C.parent_id, tree.path || C.parent_id
-	  from #{Folder.table_name} C
-	  join tree on tree.id = C.id
-	) select path from tree
-	where id = 0
+```sql
+with recursive tree as (
+  select R.parent_id as id, array[R.parent_id]::integer[] as path
+  from #{Folder.table_name} R
+  where id = #{folder_id}
+  
+  union
+  
+  select C.parent_id, tree.path || C.parent_id
+  from #{Folder.table_name} C
+  join tree on tree.id = C.id
+) select path from tree
+where id = 0
+```
 
 As I replaced the old logic with these queries, our browsing response time reduces from hundreds milliseconds to under 50ms, a huge step forward!
 
@@ -97,16 +100,22 @@ You can easily detect the n + 1 problem by reading the Rails log in development 
 
 Once you have detected the n + 1 problem, now's the time to fix it. The easiest way to fix the issue with Rails is to use eager loading. Instead of getting the list of books like so:
 
-	books = Book.order(:title)
+```ruby
+books = Book.order(:title)
+```
 
 You add the `includes` method, like so:
 
-	books = Book.includes(:author).order(:title)
+```ruby
+books = Book.includes(:author).order(:title)
+```
 
 With eager loading, instead of n + 1 queries being sent out, Rails will execute 2 queries like this:
 	
-	SELECT * FROM books ORDER BY title
-	SELECT * FROM author WHERE book_id IN (<IDs gotten from the first query>)
+```sql
+SELECT * FROM books ORDER BY title
+SELECT * FROM author WHERE book_id IN (<IDs gotten from the first query>)
+```
 
 Now your response time should be much better since you have reduced the number of database queries from n + 1 to only 2!
 
@@ -116,36 +125,44 @@ Eager loading works well for simple cases, but when the extra data needed for ea
 
 There are 2 ways to execute a JOIN query with Rails. The first one is to use [method chaining](http://guides.rubyonrails.org/active_record_querying.html#understanding-the-method-chaining). You can specify the exact columns for retrieval with this method. For example:
 
-	Book.select('books.id, books.pages, authors.name')
-		.joins(:authors)
-		.where('authors.created_at > ?', 1.week.ago)
+```ruby
+Book.select('books.id, books.pages, authors.name')
+  .joins(:authors)
+  .where('authors.created_at > ?', 1.week.ago)
+```
 
 You can also make the call reusable by putting it into a class method and chain them together:
-	
-	class Book
-		def self.chain_select
-			select('books.id, books.pages')
-		end
 
-		def self.include_author_name
-			select('authors.name')
-			.joins(:authors)
-			.where('authors.created_at > ?', 1.week.ago)
-		end
+```ruby
+class Book
+  def self.chain_select
+    select('books.id, books.pages')
+  end
 
-		def self.include_comments
-			select('comments.content')
-			.joins(:comments)
-		end
-	end
+  def self.include_author_name
+    select('authors.name')
+    .joins(:authors)
+    .where('authors.created_at > ?', 1.week.ago)
+  end
 
-	Book.chain_select
-		.include_author_name
-		.include_comment
+  def self.include_comments
+    select('comments.content')
+    .joins(:comments)
+  end
+end
+
+Book.chain_select
+  .include_author_name
+  .include_comment
+```
 
 The second way to execute a SQL query is to use [find_by_sql](http://guides.rubyonrails.org/active_record_querying.html#finding-by-sql) or [select_all](http://guides.rubyonrails.org/active_record_querying.html#select-all) and write a direct SQL query. `select_all` is similar to `find_by_sql` but returns array of hashes instead of array of book objects.
 
-	Book.find_by_sql("SELECT books.id, books.page, authors.name FROM books JOIN authors ON authors.book_id = books.id WHERE authors.created_at > now () - interval '1 week'")
+```ruby
+Book.find_by_sql("SELECT books.id, books.page, authors.name 
+  FROM books JOIN authors ON authors.book_id = books.id 
+  WHERE authors.created_at > now () - interval '1 week'")
+```
 
 This method is not portable and reusable and should be avoided unless the chaining method can't support your query.
 
@@ -157,10 +174,12 @@ One of the advantage of the recursive CTE queries that I mentioned before is now
 
 Basically we can now run the following query for search:
 
-	SELECT *
-	FROM reports
-	JOIN ...<omitted>
-	WHERE reports.content like '%search_term%'
+```sql
+SELECT *
+FROM reports
+JOIN ...<omitted>
+WHERE reports.content like '%search_term%'
+```
 
 As we want to be able to do fuzzy search on the content of the reports, the performance is getting quite slow. Fuzzy search, together with the requirement to support non-English languages also remove the possibility of using PostgreSQL 's [full text search support](https://www.postgresql.org/docs/current/static/textsearch.html).
 
@@ -168,9 +187,11 @@ After digging deeper into PostgreSQL's documentation, I found out that it suppor
 
 To create the index, you can run the following (put it into your migration file):
 
-	CREATE INDEX CONCURRENTLY index_reports_on_content_trigram
-	ON reports
-	USING gin (content gin_trgm_ops);
+```sql
+CREATE INDEX CONCURRENTLY index_reports_on_content_trigram
+ON reports
+USING gin (content gin_trgm_ops);
+```
 
 In our case, the indexes help reduce our test search query from ~100ms to <5ms, a 20 times improvement in response time!
 
@@ -221,10 +242,12 @@ Going through PostgreSQL documentation, I also found out that the auto-VACUUM co
 
 In our case, setting the following configurations improved our performance by an order of magnitude!
 
-	ALTER TABLE <table> SET (autovacuum_vacuum_scale_factor = 0.0);
-	ALTER TABLE <table> SET (autovacuum_vacuum_threshold = 1000);
-	ALTER TABLE <table> SET (autovacuum_analyze_scale_factor = 0.0);
-	ALTER TABLE <table> SET (autovacuum_analyze_threshold = 1000);
+```sql
+ALTER TABLE <table> SET (autovacuum_vacuum_scale_factor = 0.0);
+ALTER TABLE <table> SET (autovacuum_vacuum_threshold = 1000);
+ALTER TABLE <table> SET (autovacuum_analyze_scale_factor = 0.0);
+ALTER TABLE <table> SET (autovacuum_analyze_threshold = 1000);
+```
 
 ## Bonus: Use PostgreSQL indexes to improve query performance
 
