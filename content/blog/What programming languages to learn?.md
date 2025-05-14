@@ -5,6 +5,8 @@ draft: false
 type: 'posts'
 tags:
   - programming-language
+  - oop
+  - functional
 ---
 
 In my opinion, a decent programmer needs to be able to code comfortably in at least one language in each of the following categories:

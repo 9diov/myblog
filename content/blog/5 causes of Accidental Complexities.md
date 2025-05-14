@@ -6,6 +6,8 @@ type: 'posts'
 tags:
   - software-design
   - complexity
+  - oop
+  - functional
 ---
 
 The main problem with software complexity is that few people actually deconstruct what exactly is software complexity. In my opinion, an exact definition of software complexity is hard. Yet we can break them down into:
