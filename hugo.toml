@@ -19,10 +19,10 @@ style = "github-dark"
 
 [params]
   author = "Thanh Dinh"
-  info = "Software Engineer at Holistics"
-  description = "John Doe's personal website"
+  info = "Chief Engineer at Holistics"
+  description = "Thanh Dinh's personal website"
   keywords = "blog,developer,personal"
-  avatarurl = "images/avatar.jpg"
+  #avatarurl = "images/avatar.jpg"
   #gravatar = "john.doe@example.com"
 
   faviconSVG = "/img/favicon.svg"
