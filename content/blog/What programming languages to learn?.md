@@ -22,10 +22,10 @@ Learning languages in the third category will help you appreciate the **low leve
 
 Learning languages in the fourth category will give you the ability to appreciate programming languages at the **purest level**, removing all the distractions. For example: 
 
-* **Lisp**: pure syntactically, syntax = data, code as list structures
+* **Lisp**: pure syntactically, [homoiconic](https://en.wikipedia.org/wiki/Homoiconicity), syntax = data, code as list structures
 * **Haskell**: purely functional 
 * **Smalltalk**: pure OOP, everything is an object, even control flow
-* **Prolog**: pure logic programming, programs are sets of logical relations
-* **Forth**: pure stack-based concatenative language
+* **Prolog**: pure [logic programming](https://en.wikipedia.org/wiki/Logic_programming), programs are sets of logical relations
+* **Forth**: pure stack-based [concatenative language](https://en.wikipedia.org/wiki/Concatenative_programming_language)
 
 The main benefit is that after learning these, you have the confidence that any new language you need to learn is just a diluted and/or mixed version of those paradigms. Thus you rarely need to wrap your head around a new concept (e.g. closure in JavaScript, generator in Python, LINQ in C#, etc.), which I think is the biggest hurdle in learning new programming language. For example, understanding closure in JavaScript is a piece of cake if you know Scheme (dialect of Lisp).
