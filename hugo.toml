@@ -17,6 +17,10 @@ theme = "hugo-coder"
   name = "About"
   weight = 3
   url = "about/"
+[[menu.main]]
+  name = "RSS"
+  weight = 4
+  url = "index.xml"
 
 [markup.highlight]
 style = "github-dark"
@@ -44,3 +48,13 @@ style = "github-dark"
 [[module.mounts]]
 source = 'images'
 target = 'static/images'
+
+[outputs]
+home = ["HTML", "RSS"]
+
+[[params.social]]
+name = "RSS"
+icon = "fas fa-rss"
+url = "index.xml"
+rel = "alternate"
+type = "application/rss+xml"
