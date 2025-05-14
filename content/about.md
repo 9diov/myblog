@@ -1,8 +1,6 @@
 ---
 title: "About me"
 ---
-## About Me
-
 I’m a **programming languages nerd**, endlessly curious about different paradigms and abstraction models. Over the years, I've explored various languages from Forth to Haskell, using each language as a lens to sharpen my thinking.
 
 At work, I helped creating [AMQL](https://docs.holistics.io/as-code/amql/), a pair of purpose-built **configuration and query languages** at the heart of [Holistics](https://holistics.io), our flagship business intelligence platform. AMQL is our attempt to bring the **declarative power of code** to data modeling and analysis — think piped-SQL meets statically-typed YAML, designed for scale and collaboration.
