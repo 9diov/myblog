@@ -9,7 +9,7 @@ tags:
   - functional
 ---
 
-In my opinion, a decent programmer needs to be able to code comfortably in at least one language in each of the following categories:
+In my opinion, a decent programmer needs to be able to code comfortably in **at least one language** in each of the following categories:
 
 * **Business/Enterprise**: Java and/or C#
 * **Scripting/Web/Data science/AI**: Python and/or Ruby and JavaScript/TypeScript
@@ -26,6 +26,6 @@ Learning languages in the fourth category will give you the ability to appreciat
 * **Haskell**: purely functional 
 * **Smalltalk**: pure OOP, everything is an object, even control flow
 * **Prolog**: pure logic programming, programs are sets of logical relations
-* **Forth**: pure stack-based programming
+* **Forth**: pure stack-based concatenative language
 
 The main benefit is that after learning these, you have the confidence that any new language you need to learn is just a diluted and/or mixed version of those paradigms. Thus you rarely need to wrap your head around a new concept (e.g. closure in JavaScript, generator in Python, LINQ in C#, etc.), which I think is the biggest hurdle in learning new programming language. For example, understanding closure in JavaScript is a piece of cake if you know Scheme (dialect of Lisp).
