@@ -1,5 +1,5 @@
 ---
-title: What is a problem?
+title: On problem solving (Part 1) - What is a problem?
 date: 2021-06-15
 draft: false
 type: 'posts'
