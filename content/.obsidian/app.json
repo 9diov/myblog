@@ -1,7 +1,7 @@
 {
   "vimMode": true,
   "useMarkdownLinks": true,
-  "newLinkFormat": "absolute",
+  "newLinkFormat": "relative",
   "alwaysUpdateLinks": true,
   "attachmentFolderPath": "images",
   "showUnsupportedFiles": true
