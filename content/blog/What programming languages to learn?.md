@@ -12,13 +12,13 @@ tags:
 In my opinion, a decent programmer needs to be able to code comfortably in at least one language in each of the following categories:
 
 * **Business/Enterprise**: Java and/or C#
-* **Scripting/web**: Python and/or Ruby and JavaScript
+* **Scripting/Web/Data science/AI**: Python and/or Ruby and JavaScript/TypeScript
 * **System level**: C/C++/Go/D/Rust/Zig
 * **Academic/Enlightenment**: Lisp/Haskell/Smalltalk/Prolog/Forth
 
 If your time is limited, at least master the first two categories above. However, the latter two are still highly recommended.
 
-Learning languages in the third category will help you appreciate the low level details that needs to be done to make your abstraction works. For example, learn NodeJS for web development but learn bit of C to know how it utilizes epoll (in Linux) for asynchronous operation (technically this is not the language, but still relevant since OS interface is mostly in C).
+Learning languages in the third category will help you appreciate the **low level details** that needs to be done to make your abstraction works. For example, learn NodeJS for web development but learn bit of C to know how it utilizes epoll (in Linux) for asynchronous operation (technically this is not the language, but still relevant since OS interface is mostly in C).
 
 Learning languages in the fourth category will give you the ability to appreciate programming languages at the **purest level**, removing all the distractions. For example: 
 
