@@ -1,5 +1,5 @@
 ---
-title: What programming languages to learn?
+title: What programming languages to learn? The four-language rule
 date: 2017-08-10
 draft: false
 type: 'posts'
@@ -9,23 +9,55 @@ tags:
   - functional
 ---
 
-In my opinion, a decent programmer needs to be able to code comfortably in **at least one language** in each of the following categories:
+Here's the **four-language rule**:  
 
-* **Business/Enterprise**: Java and/or C#
-* **Scripting/Web/Data science/AI**: Python and/or Ruby and JavaScript/TypeScript
-* **System level**: C/C++/Go/D/Rust/Zig
-* **Academic/Enlightenment**: Lisp/Haskell/Smalltalk/Prolog/Forth
+> A decent programmer needs to be able to code comfortably in **at least one language** in each of the following categories:
+> 1. **Business/Enterprise**: Java and/or C#
+> 2. **Scripting/Web/Data science/AI**: Python and/or Ruby and JavaScript/TypeScript
+> 3. **System level**: C/C++/Go/D/Rust/Zig
+> 4. **Academic/Enlightenment**: Lisp/Haskell/Smalltalk/Prolog/Forth
 
-If your time is limited, at least master the first two categories above. However, the latter two are still highly recommended.
+## 1. Business/Enterprise
+**Examples**: Java and/or C#
 
-Learning languages in the third category will help you appreciate the **low level details** that needs to be done to make your abstraction works. For example, learn NodeJS for web development but learn bit of C to know how it utilizes epoll (in Linux) for asynchronous operation (technically this is not the language, but still relevant since OS interface is mostly in C).
+These are the workhorses of the enterprise world. They dominate in corporate environments, financial institutions, and large-scale backend systems. Mastering one means you're immediately employable in a broad range of stable, good-paying jobs.
 
-Learning languages in the fourth category will give you the ability to appreciate programming languages at the **purest level**, removing all the distractions. For example: 
+## 2. Scripting/Web/Data science/AI
+**Examples**: Python and/or Ruby and JavaScript/TypeScript
+
+These languages prioritize flexibility and speed of development. They’re essential for modern full-stack web development, rapid prototyping, automation, and scientific computing. If your time is limited, prioritize mastering this category and the previous one—they offer the most immediate career returns.
+
+## 3.System level 
+**Examples**: C/C++/Go/D/Rust/Zig
+
+Learning at least one of these languages deepens your understanding of what abstractions cost and how machines actually execute your code. For example, writing asynchronous JavaScript is easier to appreciate once you understand how epoll works in Linux—exposed via C interfaces. 
+
+These languages also dominate niche but crucial domains like:
+
+* Game engines
+* Embedded systems
+* OS development
+* High-performance computing
+
+## 4. Academic/Enlightenment 
+**Examples**: Lisp/Haskell/Smalltalk/Prolog/Forth
+
+These languages stretch your mental model of what programming is. They discard mainstream compromises in favor of **conceptual purity**:
 
 * **Lisp**: pure syntactically, [homoiconic](https://en.wikipedia.org/wiki/Homoiconicity), syntax = data, code as list structures
-* **Haskell**: purely functional 
+* **Haskell**: purely functional, lazy evaluation, a masterclass in type systems
 * **Smalltalk**: pure OOP, everything is an object, even control flow
-* **Prolog**: pure [logic programming](https://en.wikipedia.org/wiki/Logic_programming), programs are sets of logical relations
-* **Forth**: pure stack-based [concatenative language](https://en.wikipedia.org/wiki/Concatenative_programming_language)
+* **Prolog**: pure [logic programming](https://en.wikipedia.org/wiki/Logic_programming), programs are sets of logical relations, define what should be true, not how.
+* **Forth**: pure stack-based [concatenative language](https://en.wikipedia.org/wiki/Concatenative_programming_language), teaches resource constraints and raw control
 
-The main benefit is that after learning these, you have the confidence that any new language you need to learn is just a diluted and/or mixed version of those paradigms. Thus you rarely need to wrap your head around a new concept (e.g. closure in JavaScript, generator in Python, LINQ in C#, etc.), which I think is the biggest hurdle in learning new programming language. For example, understanding closure in JavaScript is a piece of cake if you know Scheme (dialect of Lisp).
+Once you've grokked these paradigms, new languages feel like hybrids rather than novelties. You’ll start to recognize features like closures, pattern matching, monads, or LINQ not as new hurdles—but as familiar ideas in different clothes.
+
+## Conclusion
+
+Learning these four categories is not about resume padding. It’s about:
+
+* **Mental fluency** in key paradigms
+* **Transferable intuition** when learning new tools
+* **Deeper debugging ability** when [abstractions leak](https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/)
+
+To put it briefly: once you've written a recursive parser in Lisp, built a concurrent server in Go, and reasoned about types in Haskell, learning “whatever new JS framework is hot this month” becomes trivial.
