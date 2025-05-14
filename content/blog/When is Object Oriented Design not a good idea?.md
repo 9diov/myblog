@@ -1,6 +1,8 @@
 ---
 title: When is Object Oriented Design not a good idea?
 date: 2020-03-21
+authors:
+  - Thanh Dinh
 draft: false
 type: 'posts'
 tags:

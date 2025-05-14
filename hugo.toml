@@ -71,3 +71,9 @@ weight = 3
 url = "index.xml"
 rel = "alternate"
 type = "application/rss+xml"
+
+[taxonomies]
+category = "categories"
+series = "series"
+tag = "tags"
+author = "authors"

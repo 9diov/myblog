@@ -1,6 +1,8 @@
 ---
 title: On problem solving (Part 1) - What is a problem?
 date: 2021-06-15
+authors:
+  - Thanh Dinh
 draft: false
 type: 'posts'
 tags:

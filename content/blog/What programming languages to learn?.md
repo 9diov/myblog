@@ -1,6 +1,8 @@
 ---
 title: What programming languages to learn? The four-language rule
 date: 2017-08-10
+authors:
+  - Thanh Dinh
 draft: false
 type: 'posts'
 tags:

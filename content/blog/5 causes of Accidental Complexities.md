@@ -1,6 +1,8 @@
 ---
 title: 5 causes of Accidental Complexities
 date: 2020-04-30
+authors:
+  - Thanh Dinh
 draft: false
 type: 'posts'
 tags:

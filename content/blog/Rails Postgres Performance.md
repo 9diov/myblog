@@ -1,6 +1,8 @@
 ---
 title: How we reduced our Rails app's response time by 3x with PostgreSQL
 date: 2018-01-25T04:14:54+08:00
+authors:
+  - Thanh Dinh
 draft: false
 type: 'posts'
 tags:
