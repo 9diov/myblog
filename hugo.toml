@@ -53,8 +53,21 @@ target = 'static/images'
 home = ["HTML", "RSS"]
 
 [[params.social]]
+name = "Github"
+icon = "fa-brands fa-github fa-2x"
+weight = 1
+url = "https://github.com/9diov"
+
+[[params.social]]
+name = "LinkedIn"
+icon = "fa-brands fa-linkedin fa-2x"
+weight = 2
+url = "https://www.linkedin.com/in/thanhdk"
+
+[[params.social]]
 name = "RSS"
-icon = "fas fa-rss"
+icon = "fas fa-rss fa-2x"
+weight = 3
 url = "index.xml"
 rel = "alternate"
 type = "application/rss+xml"
