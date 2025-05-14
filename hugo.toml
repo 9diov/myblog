@@ -10,8 +10,12 @@ theme = "hugo-coder"
   weight = 1
   url  = "blog/"
 [[menu.main]]
-  name = "About"
+  name = "Tags"
   weight = 2
+  url  = "tags/"
+[[menu.main]]
+  name = "About"
+  weight = 3
   url = "about/"
 
 [markup.highlight]
