@@ -1,5 +1,11 @@
 ## Setting up
 
+* Install deps
+  * `nix develop`
+* Install themes
+  * `git submodule init && git submodule update`
+* Update themes
+  * `git submodule update`
 * Obsidian
   * Files and Links: 
     * disable "Use [[Wikilinks]]"
